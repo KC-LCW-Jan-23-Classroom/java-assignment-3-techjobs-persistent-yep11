@@ -4,8 +4,10 @@ import mockit.Expectations;
 import mockit.Mocked;
 import org.junit.jupiter.api.Test;
 import org.launchcode.techjobs.persistent.controllers.EmployerController;
+import org.launchcode.techjobs.persistent.controllers.SkillController;
 import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Skill;
+import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Created by LaunchCode
@@ -330,20 +333,20 @@ public class TestTaskTwo extends AbstractTest {
     /*
     * Verifies that the employerRepository field is correctly defined
     * */
-//    @Test
-//    public void testEmployerRepositoryDefinition () throws ClassNotFoundException {
-//        Class employerController = getClassByName("controllers.EmployerController");
-//        Field employerRepositoryField = null;
-//
-//        try {
-//            employerRepositoryField = employerController.getDeclaredField("employerRepository");
-//        } catch (NoSuchFieldException e) {
-//            fail("EmployerController does not have an employerRepository field");
-//        }
-//
-//        assertEquals(EmployerRepository.class, employerRepositoryField.getType(), "employerRepository must be of type EmployerRepository");
-//        assertNotNull(employerRepositoryField.getAnnotation(Autowired.class), "employerRepository must have the @Autowired annotation");
-//    }
+    @Test
+    public void testEmployerRepositoryDefinition () throws ClassNotFoundException {
+        Class employerController = getClassByName("controllers.EmployerController");
+        Field employerRepositoryField = null;
+
+        try {
+            employerRepositoryField = employerController.getDeclaredField("employerRepository");
+        } catch (NoSuchFieldException e) {
+            fail("EmployerController does not have an employerRepository field");
+        }
+
+        assertEquals(EmployerRepository.class, employerRepositoryField.getType(), "employerRepository must be of type EmployerRepository");
+        assertNotNull(employerRepositoryField.getAnnotation(Autowired.class), "employerRepository must have the @Autowired annotation");
+    }
 
     /*
     * Verifies that EmployerController.index is properly defined
